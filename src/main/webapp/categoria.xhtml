@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Categoria:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista Categoria</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form-categoria">
+		<p:panelGrid id="panel-categoria" columns="4">
+			<p:outputLabel for="input-nombreCategoria" value="Nombre Categoria: "/>
+			<p:inputText id="input-nombreCategoria" value="#{categoriaView.categoria.nombreCategoria}"/>		
+		</p:panelGrid>	
+		
+	</h:form>
+    
+    <p:dataTable id="dt-categoria" value="#{categoriaView.categorias}" var="categoria" 
+    		paginator="true" rows="5" paginatorPosition="bottom" 
+    		selectionMode="simple" rowKey="#{categoria.idCategoria}">
+    	<p:ajax event="rowSelect" listener="#{categoriaView.selectCategoria}" />
+	    <p:column headerText="Id">
+	        <h:outputText value="#{categoria.idCategoria}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nombre Categoria">
+	        <h:outputText value="#{categoria.nombreCategoria}" />
+	    </p:column>
+	</p:dataTable>
+	
+	<p:toolbar>
+		<f:facet name="left">
+			<p:commandButton value="Nuevo" actionListener="#{categoriaView.newCategoria()}" 
+				update=":form-categoria:input-nombreCategoria" icon="pi pi-file" />
+			<p:commandButton value="Grabar" actionListener="#{categoriaView.saveCategoria()}" 
+				update=":form-categoria:input-nombreCategoria :dt-categoria" icon="pi pi-save" />	
+				
+			<p:commandButton value="Editar" actionListener="#{categoriaView.editCategoria()}" 
+				update=":form-categoria:input-nombreCategoria :dt-categoria" />
+			<p:commandButton value="Eliminar" actionListener="#{categoriaView.deleteCategoria()}" 
+				update=":form-categoria:input-nombreCategoria :dt-categoria" />
+
+		</f:facet>
+	</p:toolbar>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
