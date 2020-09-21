@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "marcas")
 public class Marca {
@@ -14,16 +15,13 @@ public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMarca;
-
 	
 	@Column(name = "nombreMarca", nullable = false, length = 20)
 	private String nombreMarca;
 
-	
 	@Column(name = "nombreEmpresa", nullable = false, length = 20)
 	private String nombreEmpresa;
-
-
+	
 
 	public Integer getIdMarca() {
 		return idMarca;

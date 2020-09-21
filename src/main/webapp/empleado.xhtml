@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Empleado:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista Empleado</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form-empleado">
+		<p:panelGrid id="panel-empleado" columns="4">
+			<p:outputLabel for="input-nombreEmpleado" value="Nombre Empleado: "/>
+			<p:inputText id="input-nombreEmpleado" value="#{empleadoView.empleado.nombreEmpleado}"/>
+			
+			<p:outputLabel for="input-apellidoEmpleado" value="Apellido Empleado: "/>
+			<p:inputText id="input-apellidoEmpleado" value="#{empleadoView.empleado.apellidoEmpleado}"/>
+			
+			<p:outputLabel for="input-dni" value="Dni: "/>
+			<p:inputText id="input-dni" maxlength="8"  value="#{empleadoView.empleado.dni}"/>
+			
+			<p:outputLabel for="input-email" value="Email: "/>
+			<p:inputText id="input-email" value="#{empleadoView.empleado.email}"/>
+					
+					
+		</p:panelGrid>	
+		
+	</h:form>
+    
+    <p:dataTable id="dt-empleado" value="#{empleadoView.empleados}" var="empleado" 
+    		paginator="true" rows="5" paginatorPosition="bottom" 
+    		selectionMode="simple" rowKey="#{empleado.idEmpleado}">
+    	<p:ajax event="rowSelect" listener="#{empleadoView.selectEmpleado}" />
+    	
+	    <p:column headerText="Id">
+	        <h:outputText value="#{empleado.idEmpleado}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nombre Empleado">
+	        <h:outputText value="#{empleado.nombreEmpleado}" />
+	    </p:column>
+	    
+	    <p:column headerText="Apellido Empleado">
+	        <h:outputText value="#{empleado.apellidoEmpleado}" />
+	    </p:column>
+	    
+	     <p:column headerText="Dni">
+	        <h:outputText value="#{empleado.dni}" />
+	    </p:column>
+	    
+	    <p:column headerText="Email">
+	        <h:outputText value="#{empleado.email}" />
+	    </p:column> 
+	    
+	    
+	</p:dataTable>
+	
+	<p:toolbar>
+		<f:facet name="left">
+			<p:commandButton value="Nuevo" actionListener="#{empleadoView.newEmpleado()}" 
+				update=":form-empleado:input-nombreEmpleado 
+				        :form-empleado:input-apellidoEmpleado
+				        :form-empleado:input-dni
+				        :form-empleado:input-email 				   
+				        :dt-empleado" icon="pi pi-file" />
+				
+			<p:commandButton value="Grabar" actionListener="#{empleadoView.saveEmpleado()}" 
+				update=":form-empleado:input-nombreEmpleado
+				        :form-empleado:input-apellidoEmpleado
+				        :form-empleado:input-dni
+				        :form-empleado:input-email 		        
+				        :dt-empleado" icon="pi pi-save" />
+						
+			<p:commandButton value="Editar" actionListener="#{empleadoView.editEmpleado()}" 
+				update=":form-empleado:input-nombreEmpleado
+				        :form-empleado:input-apellidoEmpleado 
+				        :form-empleado:input-dni
+				        :form-empleado:input-email
+				        :dt-empleado" />
+				
+			<p:commandButton value="Eliminar" actionListener="#{empleadoView.deleteEmpleado()}" 
+				update=":form-empleado:input-nombreEmpleado
+				        :form-empleado:input-apellidoEmpleado 
+				        :form-empleado:input-dni
+				        :form-empleado:input-email 
+				        :dt-empleado" />
+
+		</f:facet>
+	</p:toolbar>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
