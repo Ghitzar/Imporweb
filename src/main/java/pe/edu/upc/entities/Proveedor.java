@@ -18,6 +18,39 @@ public class Proveedor {
 
 	@Column(name = "nombreProveedor", nullable = false, length = 20)
 	private String nombreProveedor;
+
+
+	public Integer getIdProveedor() {
+		return idProveedor;
+	}
+
+
+	public void setIdProveedor(Integer idProveedor) {
+		this.idProveedor = idProveedor;
+	}
+
+
+	public String getNombreProveedor() {
+		return nombreProveedor;
+	}
+
+
+	public void setNombreProveedor(String nombreProveedor) {
+		this.nombreProveedor = nombreProveedor;
+	}
+
+
+	public Proveedor(Integer idProveedor, String nombreProveedor) {
+		super();
+		this.idProveedor = idProveedor;
+		this.nombreProveedor = nombreProveedor;
+	}
+
+
+	public Proveedor() {
+		super();
+		
+	}
 	
 	
 

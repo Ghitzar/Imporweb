@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Proveedor:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista Proveedor</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form-proveedor">
+		<p:panelGrid id="panel-proveedor" columns="4">
+			<p:outputLabel for="input-nombreProveedor" value="Nombre Proveedor: "/>
+			<p:inputText id="input-nombreProveedor" value="#{proveedorView.proveedor.nombreProveedor}"/>		
+		</p:panelGrid>	
+		
+	</h:form>
+    
+    <p:dataTable id="dt-proveedor" value="#{proveedorView.proveedores}" var="proveedor" 
+    		paginator="true" rows="5" paginatorPosition="bottom" 
+    		selectionMode="simple" rowKey="#{proveedor.idProveedor}">
+    	<p:ajax event="rowSelect" listener="#{proveedorView.selectProveedor}" />
+	    <p:column headerText="Id">
+	        <h:outputText value="#{proveedor.idProveedor}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nombre Proveedor">
+	        <h:outputText value="#{proveedor.nombreProveedor}" />
+	    </p:column>
+	</p:dataTable>
+	
+	<p:toolbar>
+		<f:facet name="left">
+			<p:commandButton value="Nuevo" actionListener="#{proveedorView.newProveedor()}" 
+				update=":form-proveedor:input-nombreProveedor" icon="pi pi-file" />
+			<p:commandButton value="Grabar" actionListener="#{proveedorView.saveProveedor()}" 
+				update=":form-proveedor:input-nombreProveedor :dt-proveedor" icon="pi pi-save" />	
+				
+			<p:commandButton value="Editar" actionListener="#{proveedorView.editProveedor()}" 
+				update=":form-proveedor:input-nombreProveedor :dt-proveedor" />
+			<p:commandButton value="Eliminar" actionListener="#{proveedorView.deleteProveedor()}" 
+				update=":form-proveedor:input-nombreProveedor :dt-proveedor" />
+
+		</f:facet>
+	</p:toolbar>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
