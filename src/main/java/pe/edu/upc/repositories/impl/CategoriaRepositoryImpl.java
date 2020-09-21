@@ -10,8 +10,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
-
 import pe.edu.upc.entities.Categoria;
 import pe.edu.upc.repositories.CategoriaRepository;
 

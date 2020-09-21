@@ -7,12 +7,13 @@
 		transaction-type="JTA">
 		<jta-data-source>java:/appDS</jta-data-source>
 		<class>pe.edu.upc.entities.Categoria</class>
+		<class>pe.edu.upc.entities.Marca</class> 
 <!-- 		<class>pe.edu.upc.entities.Producto</class> -->
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create"/>
-<!-- 				value="update"  -->
+<!-- 				value="update" o value="drop-and-create"  -->
 				
 		</properties>
 	</persistence-unit>

@@ -3,7 +3,7 @@ package pe.edu.upc.services;
 import java.util.List;
 import java.util.Optional;
 
-import pe.edu.upc.entities.Categoria;
+
 
 public interface CrudService<T, ID> {
 	T save(T entity) throws Exception;
