@@ -3,12 +3,10 @@ package pe.edu.upc.services.impl;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
-
 import pe.edu.upc.entities.Marca;
 import pe.edu.upc.repositories.MarcaRepository;
 import pe.edu.upc.services.MarcaService;

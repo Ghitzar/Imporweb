@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Transporte:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista Transporte</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form-transporte">
+		<p:panelGrid id="panel-transporte" columns="4">
+			<p:outputLabel for="input-nombreTransporte" value="Nombre Transporte: "/>
+			<p:inputText id="input-nombreTransporte" value="#{transporteView.transporte.nombreTransporte}"/>
+			<p:outputLabel for="input-nombreAgencia" value="Nombre Agencia: "/>
+			<p:inputText id="input-nombreAgencia" value="#{transporteView.transporte.nombreAgencia}"/>		
+		</p:panelGrid>	
+		
+	</h:form>
+    
+    <p:dataTable id="dt-transporte" value="#{transporteView.transportes}" var="transporte" 
+    		paginator="true" rows="5" paginatorPosition="bottom" 
+    		selectionMode="simple" rowKey="#{transporte.idTransporte}">
+    	<p:ajax event="rowSelect" listener="#{transporteView.selectTransporte}" />
+	    <p:column headerText="Id">
+	        <h:outputText value="#{transporte.idTransporte}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nombre Transporte">
+	        <h:outputText value="#{transporte.nombreTransporte}" />
+	    </p:column>
+	    
+	    <p:column headerText="Nombre Agencia">
+	        <h:outputText value="#{transporte.nombreAgencia}" />
+	    </p:column>
+	</p:dataTable>
+	
+	<p:toolbar>
+		<f:facet name="left">
+			<p:commandButton value="Nuevo" actionListener="#{transporteView.newTransporte()}" 
+				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" icon="pi pi-file" />
+			<p:commandButton value="Grabar" actionListener="#{transporteView.saveTransporte()}" 
+				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" icon="pi pi-save" />		
+			<p:commandButton value="Editar" actionListener="#{transporteView.editTransporte()}" 
+				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" />
+			<p:commandButton value="Eliminar" actionListener="#{transporteView.deleteTransporte()}" 
+				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" />
+
+		</f:facet>
+	</p:toolbar>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
