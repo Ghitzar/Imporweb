@@ -34,7 +34,8 @@ public class MarcaServiceImpl implements MarcaService, Serializable{
 	public Marca update(Marca entity) throws Exception {
 		return marcaRepostory.update(entity);
 	}
-
+	
+	@Transactional
 	@Override
 	public void deleteById(Integer id) throws Exception {
 		marcaRepostory.deleteById(id);	

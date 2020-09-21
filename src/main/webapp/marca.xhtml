@@ -47,13 +47,13 @@
 	<p:toolbar>
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{marcaView.newMarca()}" 
-				update=":form-marca:input-nombreMarca" icon="pi pi-file" />
+				update=":form-marca:input-nombreMarca :form-marca:input-nombreEmpresa :dt-marca" icon="pi pi-file" />
 			<p:commandButton value="Grabar" actionListener="#{marcaView.saveMarca()}" 
-				update=":form-marca:input-nombreMarca :dt-marca" icon="pi pi-save" />		
+				update=":form-marca:input-nombreMarca :form-marca:input-nombreEmpresa :dt-marca" icon="pi pi-save" />		
 			<p:commandButton value="Editar" actionListener="#{marcaView.editMarca()}" 
-				update=":form-marca:input-nombreMarca :dt-marca" />
+				update=":form-marca:input-nombreMarca :form-marca:input-nombreEmpresa :dt-marca" />
 			<p:commandButton value="Eliminar" actionListener="#{marcaView.deleteMarca()}" 
-				update=":form-marca:input-nombreMarca :dt-marca" />
+				update=":form-marca:input-nombreMarca :form-marca:input-nombreEmpresa :dt-marca" />
 
 		</f:facet>
 	</p:toolbar>

@@ -64,7 +64,7 @@ public class Marca {
 
 
 	public Marca() {
-		
+		super();
 	}
 
 

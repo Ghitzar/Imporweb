@@ -8,6 +8,7 @@
 		<jta-data-source>java:/appDS</jta-data-source>
 		<class>pe.edu.upc.entities.Categoria</class>
 		<class>pe.edu.upc.entities.Marca</class> 
+		<class>pe.edu.upc.entities.Proveedor</class> 
 <!-- 		<class>pe.edu.upc.entities.Producto</class> -->
 		<properties>
 			<property
