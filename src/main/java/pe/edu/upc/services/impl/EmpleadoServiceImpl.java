@@ -50,6 +50,11 @@ public class EmpleadoServiceImpl implements EmpleadoService, Serializable {
 	public Optional<Empleado> findById(Integer id) throws Exception {
 		return empleadoRepostory.findById(id);
 	}
+
+	@Override
+	public List<Empleado> findBynombreEmpleado(String empleado) throws Exception {
+		return empleadoRepostory.findBynombreEmpleado(empleado);
+	}
 	
 	
 	

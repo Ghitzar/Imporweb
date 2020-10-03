@@ -73,5 +73,15 @@ public class EmpleadoRepositoryImpl implements  EmpleadoRepository,Serializable{
 				empleado = Optional.of( empleados.get(0) );
 				  return empleado;
 	}
+	//buscar
+		@Override
+		public List<Empleado> findBynombreEmpleado(String nombreEmpleado) throws Exception {
+			List<Empleado> empleados = new ArrayList<Empleado>();
+			String qlString = "SELECT e FROM Empleado e WHERE e.nombreEmpleado LIKE ?1";	// JPQL
+			TypedQuery<Empleado> query = em.createQuery(qlString, Empleado.class);
+			query.setParameter(1, "%" + nombreEmpleado + "%");
+			empleados = query.getResultList();
+			return empleados;
+		}
 
 }

@@ -21,6 +21,7 @@ public class EmpleadoView implements Serializable{
 	private List<Empleado> empleados;
 	private Empleado empleado;
 	private Empleado empleadoSelected;
+	private Empleado empleadoSearch;///buscar
 	private Action action;
 	
 	@Inject
@@ -31,6 +32,8 @@ public class EmpleadoView implements Serializable{
 		cleanForm();
 		loadEmpleados();	
 		action = Action.NONE;
+		this.empleadoSearch= new Empleado();
+		this.empleadoSelected= new Empleado();
 	}
 	
 	public void loadEmpleados() {
@@ -99,6 +102,32 @@ public class EmpleadoView implements Serializable{
 				}
 			}
 				
+		}
+		
+	/////funcion para buscar 
+		public void searchnombreEmpleado() {
+			try {
+				this.empleados = empleadoService.findBynombreEmpleado(empleadoSearch.getNombreEmpleado());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.err.println(e.getMessage());
+			}
+		}
+		////para limpiar la busqueda 
+		public void cleanBynombreEmpleado() {
+			this.empleadoSearch.setNombreEmpleado("");
+			loadEmpleados();
+		//this.stateList();
+		}
+		
+		
+
+		public Empleado getEmpleadoSearch() {
+			return empleadoSearch;
+		}
+
+		public void setEmpleadoSearch(Empleado empleadoSearch) {
+			this.empleadoSearch = empleadoSearch;
 		}
 
 		public List<Empleado> getEmpleados() {

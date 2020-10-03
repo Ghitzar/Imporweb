@@ -30,11 +30,21 @@
 			
 			<p:outputLabel for="input-email" value="Email: "/>
 			<p:inputText id="input-email" value="#{empleadoView.empleado.email}"/>
-					
-					
+								
 		</p:panelGrid>	
 		
-	</h:form>
+		<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-nombreEmpleado-search" value="Nombre Empleado: "/>
+			<p:inputText id="input-nombreEmpleado-search" value="#{empleadoView.empleadoSearch.nombreEmpleado}"/>	
+			<p:commandButton value="Buscar" actionListener="#{empleadoView.searchnombreEmpleado()}" 
+					update="dt-empleado"
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{empleadoView.cleanBynombreEmpleado()}"  				
+			update="@form" />
+		</p:panelGrid>	
+	
+	
     
     <p:dataTable id="dt-empleado" value="#{empleadoView.empleados}" var="empleado" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
@@ -64,38 +74,40 @@
 	    
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar id="toolbar-empleado">
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{empleadoView.newEmpleado()}" 
 				update=":form-empleado:input-nombreEmpleado 
 				        :form-empleado:input-apellidoEmpleado
 				        :form-empleado:input-dni
 				        :form-empleado:input-email 				   
-				        :dt-empleado" icon="pi pi-file" />
+				        :form-empleado:dt-empleado" icon="pi pi-file" />
 				
 			<p:commandButton value="Grabar" actionListener="#{empleadoView.saveEmpleado()}" 
 				update=":form-empleado:input-nombreEmpleado
 				        :form-empleado:input-apellidoEmpleado
 				        :form-empleado:input-dni
 				        :form-empleado:input-email 		        
-				        :dt-empleado" icon="pi pi-save" />
+				        :form-empleado:dt-empleado" icon="pi pi-save" />
 						
 			<p:commandButton value="Editar" actionListener="#{empleadoView.editEmpleado()}" 
 				update=":form-empleado:input-nombreEmpleado
 				        :form-empleado:input-apellidoEmpleado 
 				        :form-empleado:input-dni
 				        :form-empleado:input-email
-				        :dt-empleado" />
+				        :form-empleado:dt-empleado" />
 				
 			<p:commandButton value="Eliminar" actionListener="#{empleadoView.deleteEmpleado()}" 
 				update=":form-empleado:input-nombreEmpleado
 				        :form-empleado:input-apellidoEmpleado 
 				        :form-empleado:input-dni
 				        :form-empleado:input-email 
-				        :dt-empleado" />
+				        :form-empleado:dt-empleado" />
 
 		</f:facet>
 	</p:toolbar>
+	
+	</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">
