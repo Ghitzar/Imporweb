@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import pe.edu.upc.entities.Categoria;
+
 import pe.edu.upc.services.CategoriaService;
 import pe.edu.upc.utils.Action;
 
@@ -21,6 +22,7 @@ public class CategoriaView implements Serializable{
 	private List<Categoria> categorias;
 	private Categoria categoria;
 	private Categoria categoriaSelected;
+	 private Categoria categoriaSearch;///buscar
 	private Action action;
 	
 	
@@ -32,6 +34,9 @@ public class CategoriaView implements Serializable{
 		cleanForm();
 		loadCategorias();	
 		action = Action.NONE;
+		this.categoriaSearch= new Categoria();
+		this.categoriaSelected= new Categoria();
+		
 	}
 
 	public void loadCategorias() {
@@ -103,10 +108,32 @@ public class CategoriaView implements Serializable{
 		}
 		
 		
+	/////funcion para buscar 
+		public void searchnombreCategoria() {
+			try {
+				this.categorias = categoriaService.findBynombreCategoria(categoriaSearch.getNombreCategoria());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.err.println(e.getMessage());
+			}
+		}
+		////para limpiar la busqueda 
+		public void cleanBynombreCategoria() {
+			this.categoriaSearch.setNombreCategoria("");
+			loadCategorias();
+		//this.stateList();
+		}
 		
 		
 		
-		
+		public Categoria getCategoriaSearch() {
+			return categoriaSearch;
+		}
+
+		public void setCategoriaSearch(Categoria categoriaSearch) {
+			this.categoriaSearch = categoriaSearch;
+		}
+
 		public List<Categoria> getCategorias() {
 			return categorias;
 		}

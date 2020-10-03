@@ -22,7 +22,17 @@
 			<p:outputLabel for="input-nombreCategoria" value="Nombre Categoria: "/>
 			<p:inputText id="input-nombreCategoria" value="#{categoriaView.categoria.nombreCategoria}"/>		
 		</p:panelGrid>	
-	</h:form>
+		
+	<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-nombreCategoria-search" value="Nombre Categoria: "/>
+			<p:inputText id="input-nombreCategoria-search" value="#{categoriaView.categoriaSearch.nombreCategoria}"/>	
+			<p:commandButton value="Buscar" actionListener="#{categoriaView.searchnombreCategoria()}" 
+					update="dt-categoria" 
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{categoriaView.cleanBynombreCategoria()}"  				
+			update="@form" />
+		</p:panelGrid>	
     
     <p:dataTable id="dt-categoria" value="#{categoriaView.categorias}" var="categoria" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
@@ -37,20 +47,28 @@
 	    </p:column>
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar ip = "toolbar-categoria">
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{categoriaView.newCategoria()}" 
-				update=":form-categoria:input-nombreCategoria" icon="pi pi-file" />
+				update=":form-categoria:input-nombreCategoria
+						:form-categoria:dt-categoria" 
+						icon="pi pi-file" />
 			<p:commandButton value="Grabar" actionListener="#{categoriaView.saveCategoria()}" 
-				update=":form-categoria:input-nombreCategoria :dt-categoria" icon="pi pi-save" />	
+				update=":form-categoria:input-nombreCategoria 
+						:form-categoria:dt-categoria" 
+						icon="pi pi-save" />	
 				
 			<p:commandButton value="Editar" actionListener="#{categoriaView.editCategoria()}" 
-				update=":form-categoria:input-nombreCategoria :dt-categoria" />
+				update=":form-categoria:input-nombreCategoria 
+						:form-categoria:dt-categoria" />
 			<p:commandButton value="Eliminar" actionListener="#{categoriaView.deleteCategoria()}" 
-				update=":form-categoria:input-nombreCategoria :dt-categoria" />
+				update=":form-categoria:input-nombreCategoria 
+						:form-categoria:dt-categoria" />
 
 		</f:facet>
 	</p:toolbar>
+	
+	</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">
