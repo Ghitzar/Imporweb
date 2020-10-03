@@ -11,6 +11,7 @@
 		<class>pe.edu.upc.entities.Proveedor</class>
 		<class>pe.edu.upc.entities.Transporte</class> 
 		<class>pe.edu.upc.entities.Empleado</class>   
+		<class>pe.edu.upc.entities.Cliente</class> 
 <!-- 		<class>pe.edu.upc.entities.Producto</class> -->
 		<properties>
 			<property
