@@ -51,4 +51,9 @@ public class TransporteServiceImpl implements TransporteService, Serializable{
 		return transporteRepostory.findById(id);
 	}
 
+	@Override
+	public List<Transporte> findByTipo(String transporte) throws Exception {
+		return transporteRepostory.findByTipo(transporte);
+	}
+
 }

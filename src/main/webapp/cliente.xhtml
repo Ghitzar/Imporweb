@@ -8,94 +8,95 @@
 <ui:composition template="master.xhtml">
 
 	<ui:define name="title">
-        .:Registro de Empleado:.
+        .:Registro de Cliente:.
     </ui:define>
 
 	<ui:define name="titleCont">
-		<span>Lista Empleado</span>
+		<span>Lista Cliente</span>
 	</ui:define>
 
 	<ui:define name="content">
 
-		<h:form id="form-empleado">
-		<p:panelGrid id="panel-empleado" columns="4">
-			<p:outputLabel for="input-nombreEmpleado" value="Nombre Empleado: "/>
-			<p:inputText id="input-nombreEmpleado" value="#{empleadoView.empleado.nombreEmpleado}"/>
-			
-			<p:outputLabel for="input-apellidoEmpleado" value="Apellido Empleado: "/>
-			<p:inputText id="input-apellidoEmpleado" value="#{empleadoView.empleado.apellidoEmpleado}"/>
+		<h:form id="form-cliente">
+		<p:panelGrid id="panel-cliente" columns="4">
+			<p:outputLabel for="input-nombreCliente" value="Nombre Cliente: "/>
+			<p:inputText id="input-nombreCliente" value="#{clienteView.cliente.nombreCliente}"/>
+	
 			
 			<p:outputLabel for="input-dni" value="Dni: "/>
-			<p:inputText id="input-dni" maxlength="8"  value="#{empleadoView.empleado.dni}"/>
+			<p:inputText id="input-dni" maxlength="8"  value="#{clienteView.cliente.dni}"/>
 			
-			<p:outputLabel for="input-email" value="Email: "/>
-			<p:inputText id="input-email" value="#{empleadoView.empleado.email}"/>
-					
-					
+			<p:outputLabel for="input-direccion" value="Direccion: "/>
+			<p:inputText id="input-direccion" value="#{clienteView.cliente.direccion}"/>
+							
 		</p:panelGrid>	
 		
-	</h:form>
+	<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-nombreCliente-search" value="Nombre Cliente: "/>
+			<p:inputText id="input-nombreCliente-search" value="#{clienteView.clienteSearch.nombreCliente}"/>	
+			<p:commandButton value="Buscar" actionListener="#{clienteView.searchnombreCliente()}" 
+					update="dt-cliente" 
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{clienteView.cleanBynombreCliente()}"  				
+			update="@form" />
+		</p:panelGrid>
     
-    <p:dataTable id="dt-empleado" value="#{empleadoView.empleados}" var="empleado" 
+    <p:dataTable id="dt-cliente" value="#{clienteView.clientes}" var="cliente" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
-    		selectionMode="simple" rowKey="#{empleado.idEmpleado}">
-    	<p:ajax event="rowSelect" listener="#{empleadoView.selectEmpleado}" />
+    		selectionMode="simple" rowKey="#{cliente.idCliente}">
+    	<p:ajax event="rowSelect" listener="#{clienteView.selectCliente}" />
     	
 	    <p:column headerText="Id">
-	        <h:outputText value="#{empleado.idEmpleado}" />
+	        <h:outputText value="#{cliente.idCliente}" />
 	    </p:column>
 	 
-	    <p:column headerText="Nombre Empleado">
-	        <h:outputText value="#{empleado.nombreEmpleado}" />
-	    </p:column>
-	    
-	    <p:column headerText="Apellido Empleado">
-	        <h:outputText value="#{empleado.apellidoEmpleado}" />
+	    <p:column headerText="Nombre Cliente">
+	        <h:outputText value="#{cliente.nombreCliente}" />
 	    </p:column>
 	    
 	     <p:column headerText="Dni">
-	        <h:outputText value="#{empleado.dni}" />
+	        <h:outputText value="#{cliente.dni}" />
 	    </p:column>
 	    
-	    <p:column headerText="Email">
-	        <h:outputText value="#{empleado.email}" />
+	    <p:column headerText="Direccion">
+	        <h:outputText value="#{cliente.direccion}" />
 	    </p:column> 
 	    
 	    
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar id="toolbar-cliente">
 		<f:facet name="left">
-			<p:commandButton value="Nuevo" actionListener="#{empleadoView.newEmpleado()}" 
-				update=":form-empleado:input-nombreEmpleado 
-				        :form-empleado:input-apellidoEmpleado
-				        :form-empleado:input-dni
-				        :form-empleado:input-email 				   
-				        :dt-empleado" icon="pi pi-file" />
+			<p:commandButton value="Nuevo" actionListener="#{clienteView.newCliente()}" 
+				update=":form-cliente:input-nombreCliente 
+				 	    :form-cliente:input-dni
+				        :form-cliente:input-direccion 				   
+				        :form-cliente:dt-cliente" icon="pi pi-file" />
 				
-			<p:commandButton value="Grabar" actionListener="#{empleadoView.saveEmpleado()}" 
-				update=":form-empleado:input-nombreEmpleado
-				        :form-empleado:input-apellidoEmpleado
-				        :form-empleado:input-dni
-				        :form-empleado:input-email 		        
-				        :dt-empleado" icon="pi pi-save" />
+			<p:commandButton value="Grabar" actionListener="#{clienteView.saveCliente()}" 
+				update=":form-cliente:input-nombreCliente 
+				 	    :form-cliente:input-dni
+				        :form-cliente:input-direccion 				   
+				        :form-cliente:dt-cliente" icon="pi pi-save" />
 						
-			<p:commandButton value="Editar" actionListener="#{empleadoView.editEmpleado()}" 
-				update=":form-empleado:input-nombreEmpleado
-				        :form-empleado:input-apellidoEmpleado 
-				        :form-empleado:input-dni
-				        :form-empleado:input-email
-				        :dt-empleado" />
+			<p:commandButton value="Editar" actionListener="#{clienteView.editCliente()}" 
+				update=":form-cliente:input-nombreCliente 
+				 	    :form-cliente:input-dni
+				        :form-cliente:input-direccion 				   
+				        :form-cliente:dt-cliente" />
 				
-			<p:commandButton value="Eliminar" actionListener="#{empleadoView.deleteEmpleado()}" 
-				update=":form-empleado:input-nombreEmpleado
-				        :form-empleado:input-apellidoEmpleado 
-				        :form-empleado:input-dni
-				        :form-empleado:input-email 
-				        :dt-empleado" />
+			<p:commandButton value="Eliminar" actionListener="#{clienteView.deleteCliente()}" 
+				update=":form-cliente:input-nombreCliente 
+				 	    :form-cliente:input-dni
+				        :form-cliente:input-direccion 				   
+				        :form-cliente:dt-cliente" />
 
 		</f:facet>
 	</p:toolbar>
+	
+	
+	</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">

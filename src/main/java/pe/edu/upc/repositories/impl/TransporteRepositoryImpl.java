@@ -75,4 +75,15 @@ public class TransporteRepositoryImpl implements  TransporteRepository,Serializa
 			return transporte;
 	}
 
+	
+	//buscar
+		@Override
+		public List<Transporte> findByTipo(String tipo) throws Exception {
+			List<Transporte> transportes = new ArrayList<Transporte>();
+			String qlString = "SELECT t FROM Transporte t WHERE t.tipo LIKE ?1";	// JPQL
+			TypedQuery<Transporte> query = em.createQuery(qlString, Transporte.class);
+			query.setParameter(1, "%" + tipo + "%");
+			transportes = query.getResultList();
+			return transportes;
+		}
 }

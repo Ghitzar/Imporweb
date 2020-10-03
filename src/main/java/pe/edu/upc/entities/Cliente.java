@@ -17,7 +17,7 @@ public class Cliente {
 	private Integer idCliente;
 	
 	@Column(name = "nombreCliente", nullable = false, length = 20)
-	private String nombreEmpleado;
+	private String nombreCliente;
 	
 	@Column(name = "dni", nullable = false, length = 8)
 	private String dni;
@@ -33,12 +33,14 @@ public class Cliente {
 		this.idCliente = idCliente;
 	}
 
-	public String getNombreEmpleado() {
-		return nombreEmpleado;
+	
+
+	public String getNombreCliente() {
+		return nombreCliente;
 	}
 
-	public void setNombreEmpleado(String nombreEmpleado) {
-		this.nombreEmpleado = nombreEmpleado;
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
 	}
 
 	public String getDni() {
@@ -57,10 +59,10 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public Cliente(Integer idCliente, String nombreEmpleado, String dni, String direccion) {
+	public Cliente(Integer idCliente, String nombreCliente, String dni, String direccion) {
 		super();
 		this.idCliente = idCliente;
-		this.nombreEmpleado = nombreEmpleado;
+		this.nombreCliente = nombreCliente;
 		this.dni = dni;
 		this.direccion = direccion;
 	}

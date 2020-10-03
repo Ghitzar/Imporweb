@@ -48,4 +48,10 @@ public class ClienteServiceImpl implements ClienteService, Serializable {
 		return clienteRepostory.findById(id);
 	}
 
+	@Override
+	public List<Cliente> findBynombreCliente(String cliente) throws Exception {
+		return clienteRepostory.findBynombreCliente(cliente);
+		
+	}
+
 }

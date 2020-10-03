@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import org.primefaces.event.SelectEvent;
 import pe.edu.upc.entities.Transporte;
 import pe.edu.upc.services.TransporteService;
@@ -22,6 +23,7 @@ public class TransporteView implements Serializable{
 	private List<Transporte> transportes;
 	private Transporte transporte;
 	private Transporte transporteSelected;
+	private Transporte transporteSearch;///buscar
 	private Action action;
 	
 	@Inject
@@ -32,6 +34,8 @@ public class TransporteView implements Serializable{
 		cleanForm();
 		loadTransportes();	
 		action = Action.NONE;
+		this.transporteSearch= new Transporte();
+		this.transporteSelected= new Transporte();
 	}
 	
 	public void loadTransportes() {
@@ -100,6 +104,32 @@ public class TransporteView implements Serializable{
 						}
 					}
 						
+				}
+				
+			/////funcion para buscar 
+				public void searchtipoTransporte() {
+					try {
+						this.transportes = transporteService.findByTipo(transporteSearch.getTipo());
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.err.println(e.getMessage());
+					}
+				}
+				////para limpiar la busqueda 
+				public void cleanBytipo() {
+					this.transporteSearch.setTipo("");
+					loadTransportes();
+				//this.stateList();
+				}
+				
+				
+
+				public Transporte getTransporteSearch() {
+					return transporteSearch;
+				}
+
+				public void setTransporteSearch(Transporte transporteSearch) {
+					this.transporteSearch = transporteSearch;
 				}
 
 				public List<Transporte> getTransportes() {

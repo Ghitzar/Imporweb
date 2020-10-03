@@ -74,4 +74,17 @@ public class ClienteRepositoryImpl implements  ClienteRepository,Serializable {
 						  return cliente;
 			}
 
+	//buscar
+		@Override
+		public List<Cliente> findBynombreCliente(String nombreCliente) throws Exception {
+			List<Cliente> clientes = new ArrayList<Cliente>();
+			String qlString = "SELECT cl FROM Cliente cl WHERE cl.nombreCliente LIKE ?1";	// JPQL
+			TypedQuery<Cliente> query = em.createQuery(qlString, Cliente.class);
+			query.setParameter(1, "%" + nombreCliente + "%");
+			clientes = query.getResultList();
+			return clientes;
+		}
+	
+	
+	
 }

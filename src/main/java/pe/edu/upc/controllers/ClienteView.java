@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import pe.edu.upc.entities.Cliente;
-
 import pe.edu.upc.services.ClienteService;
 import pe.edu.upc.utils.Action;
 
@@ -23,16 +22,20 @@ public class ClienteView implements Serializable{
 	private List<Cliente> clientes;
 	private Cliente cliente;
 	private Cliente clienteSelected;
+	private Cliente clienteSearch;///buscar
 	private Action action;
 	
 	@Inject
 	private ClienteService clienteService;
+	
 	
 	@PostConstruct
 	public void init() {
 		cleanForm();
 		loadClientes();	
 		action = Action.NONE;
+		this.clienteSearch= new Cliente();
+		this.clienteSelected= new Cliente();
 	}
 	
 	public void loadClientes() {
@@ -102,6 +105,31 @@ public class ClienteView implements Serializable{
 					}
 				}
 					
+			}
+			
+			/////funcion para buscar 
+			public void searchnombreCliente() {
+				try {
+					this.clientes = clienteService.findBynombreCliente(clienteSearch.getNombreCliente());
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.err.println(e.getMessage());
+				}
+			}
+			////para limpiar la busqueda 
+			public void cleanBynombreCliente() {
+				this.clienteSearch.setNombreCliente("");
+				loadClientes();
+			//this.stateList();
+			}
+			
+
+			public Cliente getClienteSearch() {
+				return clienteSearch;
+			}
+
+			public void setClienteSearch(Cliente clienteSearch) {
+				this.clienteSearch = clienteSearch;
 			}
 
 			public List<Cliente> getClientes() {

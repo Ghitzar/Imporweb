@@ -19,13 +19,28 @@
 
 		<h:form id="form-transporte">
 		<p:panelGrid id="panel-transporte" columns="4">
+		
 			<p:outputLabel for="input-nombreTransporte" value="Nombre Transporte: "/>
 			<p:inputText id="input-nombreTransporte" value="#{transporteView.transporte.nombreTransporte}"/>
+			
 			<p:outputLabel for="input-nombreAgencia" value="Nombre Agencia: "/>
-			<p:inputText id="input-nombreAgencia" value="#{transporteView.transporte.nombreAgencia}"/>		
+			<p:inputText id="input-nombreAgencia" value="#{transporteView.transporte.nombreAgencia}"/>
+			
+			<p:outputLabel for="input-tipo" value="Tipo: "/>
+			<p:inputText id="input-tipo" value="#{transporteView.transporte.tipo}"/>
+					
 		</p:panelGrid>	
 		
-	</h:form>
+	<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-tipo-search" value="Tipo: "/>
+			<p:inputText id="input-tipo-search" value="#{transporteView.transporteSearch.tipo}"/>	
+			<p:commandButton value="Buscar" actionListener="#{transporteView.searchtipoTransporte()}" 
+					update=":form-transporte:dt-transporte :form-transporte:toolbar-transporte" 
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{transporteView.cleanBytipo()}"  				
+			update="@form" />
+		</p:panelGrid>	
     
     <p:dataTable id="dt-transporte" value="#{transporteView.transportes}" var="transporte" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
@@ -39,24 +54,48 @@
 	        <h:outputText value="#{transporte.nombreTransporte}" />
 	    </p:column>
 	    
-	    <p:column headerText="Nombre Agencia">
+	      <p:column headerText="Nombre Agencia">
 	        <h:outputText value="#{transporte.nombreAgencia}" />
 	    </p:column>
+	    
+	      <p:column headerText="Tipo">
+	        <h:outputText value="#{transporte.tipo}" />
+	    </p:column>
+	    
+	    
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar id="toolbar-transporte">
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{transporteView.newTransporte()}" 
-				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" icon="pi pi-file" />
+				update=":form-transporte:input-nombreTransporte
+						:form-transporte:input-nombreAgencia
+						:form-transporte:input-tipo	
+						:form-transporte:dt-transporte"
+						icon="pi pi-file" />
 			<p:commandButton value="Grabar" actionListener="#{transporteView.saveTransporte()}" 
-				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" icon="pi pi-save" />		
+				update=":form-transporte:input-nombreTransporte
+						:form-transporte:input-nombreAgencia
+						:form-transporte:input-tipo	
+						:form-transporte:dt-transporte"
+						icon="pi pi-save" />	
+				
 			<p:commandButton value="Editar" actionListener="#{transporteView.editTransporte()}" 
-				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" />
+				update=":form-transporte:input-nombreTransporte
+						:form-transporte:input-nombreAgencia
+						:form-transporte:input-tipo	
+						:form-transporte:dt-transporte" />
 			<p:commandButton value="Eliminar" actionListener="#{transporteView.deleteTransporte()}" 
-				update=":form-transporte:input-nombreTransporte :form-transporte:input-nombreAgencia :dt-transporte" />
+				update=":form-transporte:input-nombreTransporte
+						:form-transporte:input-nombreAgencia
+						:form-transporte:input-tipo	
+						:form-transporte:dt-transporte"/>
 
 		</f:facet>
 	</p:toolbar>
+	
+	
+	</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">
