@@ -76,4 +76,16 @@ public class ProveedorRepositoryImpl implements ProveedorRepository, Serializabl
 			return proveedor;
 	}
 
+	
+	
+	//buscar
+		@Override
+		public List<Proveedor> findBynombreProveedor(String nombreProveedor) throws Exception {
+			List<Proveedor> proveedores = new ArrayList<Proveedor>();
+			String qlString = "SELECT p FROM Proveedor p WHERE p.nombreProveedor LIKE ?1";	// JPQL
+			TypedQuery<Proveedor> query = em.createQuery(qlString, Proveedor.class);
+			query.setParameter(1, "%" + nombreProveedor + "%");
+			proveedores = query.getResultList();
+			return proveedores;
+		}
 }

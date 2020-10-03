@@ -19,11 +19,30 @@
 
 		<h:form id="form-proveedor">
 		<p:panelGrid id="panel-proveedor" columns="4">
-			<p:outputLabel for="input-nombreProveedor" value="Nombre Proveedor: "/>
-			<p:inputText id="input-nombreProveedor" value="#{proveedorView.proveedor.nombreProveedor}"/>		
-		</p:panelGrid>	
 		
-	</h:form>
+			<p:outputLabel for="input-nombreProveedor" value="Nombre Proveedor: "/>
+			<p:inputText id="input-nombreProveedor" value="#{proveedorView.proveedor.nombreProveedor}"/>
+			
+			<p:outputLabel for="input-telefono" value="Telefono: "/>
+			<p:inputText id="input-telefono" value="#{proveedorView.proveedor.telefono}"/>
+			
+			<p:outputLabel for="input-email" value="Email: "/>
+			<p:inputText id="input-email" value="#{proveedorView.proveedor.email}"/>
+						
+		</p:panelGrid>	
+		<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-nombreProveedor-search" value="Tipo: "/>
+			<p:inputText id="input-nombreProveedor-search" value="#{proveedorView.proveedorSearch.nombreProveedor}"/>	
+			<p:commandButton value="Buscar" actionListener="#{proveedorView.searchnombreProveedor()}" 
+					update="dt-proveedor" 
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{proveedorView.cleanBynombreProveedor()}"  				
+			update="@form" />
+		</p:panelGrid>	
+	
+	
+
     
     <p:dataTable id="dt-proveedor" value="#{proveedorView.proveedores}" var="proveedor" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
@@ -36,22 +55,46 @@
 	    <p:column headerText="Nombre Proveedor">
 	        <h:outputText value="#{proveedor.nombreProveedor}" />
 	    </p:column>
+	    
+	    <p:column headerText="Telefono">
+	        <h:outputText value="#{proveedor.telefono}" />
+	    </p:column>
+	    
+	    <p:column headerText="Email">
+	        <h:outputText value="#{proveedor.email}" />
+	    </p:column>
+	    
+	    
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar id="toolbar-proveedor">
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{proveedorView.newProveedor()}" 
-				update=":form-proveedor:input-nombreProveedor" icon="pi pi-file" />
+				update=":form-proveedor:input-nombreProveedor 
+						:form-proveedor:input-telefono
+						:form-proveedor:input-email
+						:form-proveedor:dt-proveedor" 
+						icon="pi pi-file" />
 			<p:commandButton value="Grabar" actionListener="#{proveedorView.saveProveedor()}" 
-				update=":form-proveedor:input-nombreProveedor :dt-proveedor" icon="pi pi-save" />	
+				update=":form-proveedor:input-nombreProveedor 
+						:form-proveedor:input-telefono
+						:form-proveedor:input-email
+						:form-proveedor:dt-proveedor" icon="pi pi-save" />	
 				
 			<p:commandButton value="Editar" actionListener="#{proveedorView.editProveedor()}" 
-				update=":form-proveedor:input-nombreProveedor :dt-proveedor" />
+				update=":form-proveedor:input-nombreProveedor 
+						:form-proveedor:input-telefono
+						:form-proveedor:input-email
+						:form-proveedor:dt-proveedor" />
 			<p:commandButton value="Eliminar" actionListener="#{proveedorView.deleteProveedor()}" 
-				update=":form-proveedor:input-nombreProveedor :dt-proveedor" />
+				update=":form-proveedor:input-nombreProveedor 
+						:form-proveedor:input-telefono
+						:form-proveedor:input-email
+						:form-proveedor:dt-proveedor" />
 
 		</f:facet>
 	</p:toolbar>
+		</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">

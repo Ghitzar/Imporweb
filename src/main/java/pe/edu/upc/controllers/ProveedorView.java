@@ -20,6 +20,7 @@ public class ProveedorView implements Serializable{
 	private List<Proveedor> proveedores;
 	private Proveedor proveedor;
 	private Proveedor proveedorSelected;
+    private Proveedor proveedorSearch;///buscar
 	private Action action;
 	
 
@@ -31,6 +32,8 @@ public class ProveedorView implements Serializable{
 		cleanForm();
 		loadProveedores();	
 		action = Action.NONE;
+		this.proveedorSearch= new Proveedor();
+		this.proveedorSelected= new Proveedor();
 	}
 
 	public void loadProveedores() {
@@ -99,6 +102,32 @@ public class ProveedorView implements Serializable{
 					}
 				}
 					
+			}
+			
+		/////funcion para buscar 
+			public void searchnombreProveedor() {
+				try {
+					this.proveedores = proveedorService.findBynombreProveedor(proveedorSearch.getNombreProveedor());
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.err.println(e.getMessage());
+				}
+			}
+			////para limpiar la busqueda 
+			public void cleanBynombreProveedor() {
+				this.proveedorSearch.setNombreProveedor("");
+				loadProveedores();
+			//this.stateList();
+			}
+			
+			
+
+			public Proveedor getProveedorSearch() {
+				return proveedorSearch;
+			}
+
+			public void setProveedorSearch(Proveedor proveedorSearch) {
+				this.proveedorSearch = proveedorSearch;
 			}
 
 			public List<Proveedor> getProveedores() {

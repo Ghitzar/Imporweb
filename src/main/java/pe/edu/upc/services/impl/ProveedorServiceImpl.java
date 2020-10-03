@@ -51,4 +51,9 @@ public class ProveedorServiceImpl implements ProveedorService, Serializable{
 		return proveedorRepostory.findById(id);
 	}
 
+	@Override
+	public List<Proveedor> findBynombreProveedor(String proveedor) throws Exception {
+		return proveedorRepostory.findBynombreProveedor(proveedor);
+	}
+
 }
