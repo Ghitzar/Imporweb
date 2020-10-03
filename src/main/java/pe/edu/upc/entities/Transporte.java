@@ -21,6 +21,21 @@ public class Transporte {
 	
 	@Column(name = "nombreAgencia", nullable = false, length = 30)
 	private String nombreAgencia;
+	
+	@Column(name = "tipo", nullable = false, length = 30)
+	private String tipo;
+
+
+	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 
 	public Integer getIdTransporte() {
@@ -52,12 +67,12 @@ public class Transporte {
 		this.nombreAgencia = nombreAgencia;
 	}
 
-
-	public Transporte(Integer idTransporte, String nombreTransporte, String nombreAgencia) {
+	public Transporte(Integer idTransporte, String nombreTransporte, String nombreAgencia, String tipo) {
 		super();
 		this.idTransporte = idTransporte;
 		this.nombreTransporte = nombreTransporte;
 		this.nombreAgencia = nombreAgencia;
+		this.tipo = tipo;
 	}
 
 
