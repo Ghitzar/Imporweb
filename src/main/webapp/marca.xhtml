@@ -25,7 +25,18 @@
 			<p:inputText id="input-nombreEmpresa" value="#{marcaView.marca.nombreEmpresa}"/>		
 		</p:panelGrid>	
 		
-	</h:form>
+
+		<p:panelGrid id="panel-buscar" columns="4" >
+			<p:outputLabel for="input-nombreMarca-search" value="Nombre Marca: "/>
+			<p:inputText id="input-nombreMarca-search" value="#{marcaView.marcaSearch.nombreMarca}"/>	
+			<p:commandButton value="Buscar" actionListener="#{marcaView.searchnombreMarca()}" 
+					update="dt-marca"
+					icon="pi pi-search" />
+			<p:commandButton value="Limpiar" icon="pi pi-refresh"  				
+			actionListener="#{marcaView.cleanBynombreMarca()}"  				
+			update="@form" />
+		</p:panelGrid>	
+	
     
     <p:dataTable id="dt-marca" value="#{marcaView.marcas}" var="marca" 
     		paginator="true" rows="5" paginatorPosition="bottom" 
@@ -44,29 +55,31 @@
 	    </p:column>
 	</p:dataTable>
 	
-	<p:toolbar>
+	<p:toolbar id="toolbar-marca">
 		<f:facet name="left">
 			<p:commandButton value="Nuevo" actionListener="#{marcaView.newMarca()}" 
 				update=":form-marca:input-nombreMarca 
 						:form-marca:input-nombreEmpresa 
-						:dt-marca" 
+						:form-marca:dt-marca" 
 						icon="pi pi-file" />
 			<p:commandButton value="Grabar" actionListener="#{marcaView.saveMarca()}" 
 				update=":form-marca:input-nombreMarca 
 						:form-marca:input-nombreEmpresa 
-						:dt-marca" 
+						:form-marca:dt-marca" 
 						icon="pi pi-save" />		
 			<p:commandButton value="Editar" actionListener="#{marcaView.editMarca()}" 
 				update=":form-marca:input-nombreMarca 
 						:form-marca:input-nombreEmpresa 
-						:dt-marca" />
+						:form-marca:dt-marca" />
 			<p:commandButton value="Eliminar" actionListener="#{marcaView.deleteMarca()}" 
 				update=":form-marca:input-nombreMarca 
 						:form-marca:input-nombreEmpresa 
-						:dt-marca" />
+						:form-marca:dt-marca" />
 
 		</f:facet>
 	</p:toolbar>
+	
+	</h:form>
 	</ui:define>
 
 	<ui:define name="footerCont">

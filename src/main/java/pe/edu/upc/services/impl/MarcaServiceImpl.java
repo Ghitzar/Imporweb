@@ -50,4 +50,9 @@ public class MarcaServiceImpl implements MarcaService, Serializable{
 		return marcaRepostory.findById(id);
 	}
 
+	@Override
+	public List<Marca> findBynombreMarca(String marca) throws Exception {
+		return marcaRepostory.findBynombreMarca(marca);
+	}
+
 }

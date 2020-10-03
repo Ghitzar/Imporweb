@@ -21,6 +21,7 @@ public class MarcaView implements Serializable{
 	private List<Marca> marcas;
 	private Marca marca;
 	private Marca marcaSelected;
+	 private Marca marcaSearch;///buscar
 	private Action action;
 	
 	@Inject
@@ -31,6 +32,8 @@ public class MarcaView implements Serializable{
 		cleanForm();
 		loadMarcas();	
 		action = Action.NONE;
+		this.marcaSearch= new Marca();
+		this.marcaSelected= new Marca();
 	}
 	
 	public void loadMarcas() {
@@ -101,13 +104,43 @@ public class MarcaView implements Serializable{
 					
 			}
 			
+		/////funcion para buscar 
+			public void searchnombreMarca() {
+				try {
+					this.marcas = marcaService.findBynombreMarca(marcaSearch.getNombreMarca());
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.err.println(e.getMessage());
+				}
+			}
+			////para limpiar la busqueda 
+			public void cleanBynombreMarca() {
+				this.marcaSearch.setNombreMarca("");
+				loadMarcas();
+			//this.stateList();
+			}
 	
 	
 	
 	
 	
 	
-	
+
+	public Marca getMarcaSearch() {
+				return marcaSearch;
+			}
+
+			public void setMarcaSearch(Marca marcaSearch) {
+				this.marcaSearch = marcaSearch;
+			}
+
+	public Marca getMarcaSelected() {
+				return marcaSelected;
+			}
+
+			public void setMarcaSelected(Marca marcaSelected) {
+				this.marcaSelected = marcaSelected;
+			}
 
 	public List<Marca> getMarcas() {
 		return marcas;

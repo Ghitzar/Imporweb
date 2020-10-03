@@ -73,4 +73,15 @@ public class MarcaRepositoryImpl implements  MarcaRepository,Serializable {
 				return marca;
 	}
 
+	//buscar
+		@Override
+		public List<Marca> findBynombreMarca(String nombreMarca) throws Exception {
+			List<Marca> marcas = new ArrayList<Marca>();
+			String qlString = "SELECT m FROM Marca m WHERE m.nombreMarca LIKE ?1";	// JPQL
+			TypedQuery<Marca> query = em.createQuery(qlString, Marca.class);
+			query.setParameter(1, "%" + nombreMarca + "%");
+			marcas = query.getResultList();
+			return marcas;
+		}
+	
 }
